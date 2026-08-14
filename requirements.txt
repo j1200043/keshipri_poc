@@ -1,6 +1,7 @@
 # 機械学習・変換
 ultralytics>=8.3.0
 coremltools>=8.0
+easyocr>=1.7.2
 
 # 画像処理・可視化
 opencv-python>=4.10.0

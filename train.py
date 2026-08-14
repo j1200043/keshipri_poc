@@ -29,20 +29,17 @@ def train_keshipuri_model():
     # 3. 学習実行 (全方向の撮影・薄い鉛筆線に対応するデータ拡張ON)
     results = model.train(
         data=dataset_yaml,
-        epochs=100,            # 全方向の学習パターンが増えるためエポック数を100に増量
+        epochs=150,           # 上限は少し余裕を持たせる
+        patience=20,          # 20回精度が向上しなければ自動で早期終了（過学習防止）
         imgsz=1024,
         batch=8,
         name="keshipuri_yolo11s_poc",
         project="models/runs",
         device=device,
-        # --- 色味・影への耐性 ---
-        hsv_h=0.015,
-        hsv_s=0.7,
-        hsv_v=0.4,
-        # --- 全角度・回転・反転の自動適用設定 ---
-        degrees=180.0,         # -180°〜+180°(全方向回転)をランダム適用
-        flipud=0.5,            # 50%の確率で上下反転して学習
-        fliplr=0.5,            # 50%の確率で左右反転して学習
+        # --- 台形補正・正位置画像向け最適化 ---
+        degrees=5.0,
+        flipud=0.0,
+        fliplr=0.0,
         exist_ok=True
     )
 
