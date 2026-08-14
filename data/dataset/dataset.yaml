@@ -1,0 +1,7 @@
+path: data/dataset  # データセットのルートディレクトリ（相対パス）
+train: images       # 学習用画像が入っているフォルダ名
+val: images         # 検証用画像が入っているフォルダ名（PoCでは同じでOK）
+
+# クラス（ラベル）の設定
+names:
+  0: handwriting
