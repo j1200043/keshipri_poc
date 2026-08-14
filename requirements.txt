@@ -1,0 +1,12 @@
+# 機械学習・変換
+ultralytics>=8.3.0
+coremltools>=8.0
+
+# 画像処理・可視化
+opencv-python>=4.10.0
+pillow>=10.4.0
+matplotlib>=3.9.0
+
+# 計算・DB（Python 3.12対応バージョン）
+numpy>=2.2.6
+psycopg2-binary>=2.9.9
