@@ -16,11 +16,17 @@ def train_keshipuri_model():
 
     # 1. YOLOv11s (Small) モデルのロード
     model = YOLO("yolo11s.pt")
+#    model = YOLO("yolo11m.pt")
 
-    # 2. デバイス判定 (Apple Silicon MPS / CPU)
+    # 2. デバイス判定 (CUDA > MPS > CPU)
     try:
         import torch
-        device = "mps" if torch.backends.mps.is_available() else "cpu"
+        if torch.cuda.is_available():
+            device = 0  # または "cuda"
+        elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            device = "mps"
+        else:
+            device = "cpu"
     except ImportError:
         device = "cpu"
         
@@ -29,11 +35,11 @@ def train_keshipuri_model():
     # 3. 学習実行 (全方向の撮影・薄い鉛筆線に対応するデータ拡張ON)
     results = model.train(
         data=dataset_yaml,
-        epochs=150,           # 上限は少し余裕を持たせる
-        patience=20,          # 20回精度が向上しなければ自動で早期終了（過学習防止）
+        epochs=100,           
+        patience=0,         
         imgsz=1024,
-        batch=8,
-        name="keshipuri_yolo11s_poc",
+        batch=8,                        # ★Mediumモデル向けに4に調整（VRAM 8GB安全圏
+        name="keshipuri_yolo11s_poc",  # 保存先フォルダ名を変更
         project="models/runs",
         device=device,
         # --- 台形補正・正位置画像向け最適化 ---
