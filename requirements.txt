@@ -3,6 +3,15 @@ ultralytics>=8.3.0
 coremltools>=8.0
 easyocr>=1.7.2
 
+# アノテーション
+label-studio>=1.23.0
+label-studio-sdk>=2.0.18
+
+# セグメンテーション学習
+torch>=2.13.0
+segmentation-models-pytorch>=0.5.0
+albumentations>=2.0.8
+
 # 画像処理・可視化
 opencv-python>=4.10.0
 pillow>=10.4.0

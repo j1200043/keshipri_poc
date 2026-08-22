@@ -1,0 +1,6 @@
+<View>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" />
+  <BrushLabels name="tag" toName="image">
+    <Label value="handwriting" background="#FF0000" />
+  </BrushLabels>
+</View>

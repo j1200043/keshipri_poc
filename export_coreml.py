@@ -12,5 +12,10 @@ else:
     
     print("CoreML (.mlpackage) への変換を開始します...")
     # iOS向けに最適化してエクスポート
-    model.export(format="coreml", nms=True, imgsz=640)
+    model.export(
+        format="coreml",
+        imgsz=1024,
+        half=False,      # FP32で安定化（シミュレータでのFP16非互換を回避）
+        dynamic=False    # 固定シェイプ化（MLIR pass manager failed の主要因を排除）
+    )
     print("CoreML 変換完了！ runs/detect/models/runs/keshipuri_yolo_poc/weights/ 配下に保存されました。")

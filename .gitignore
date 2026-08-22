@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+output_history/
+data_prepare/
+runs/
+.DS_Store
+.pt
+/data/debug_steps/
+/data/pseudo*/
+/data/predict_output/
+models/segmentation/
+
